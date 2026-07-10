@@ -7,8 +7,11 @@
 <meta property="og:title" content="Reynolds Design Co. — Web Design for Small Business">
 <meta property="og:description" content="See your new website before you pay a cent. Get a free custom homepage mockup, no obligation.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://res.cloudinary.com/du7daaai2/image/upload/v1783692498/profile_q7nsav.jpg">
+<meta property="og:image" content="https://reynolds-design-co.vercel.app/media/profile.jpg">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="assets/favicon/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
 <!-- ANALYTICS: Sign up at plausible.io, then replace "yourdomain.com" below with your real domain. Remove this comment once done. -->
 <script defer data-domain="yourdomain.com" src="https://plausible.io/js/script.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,7 +51,11 @@
     display:flex; justify-content:space-between; align-items:center;
     padding:24px 32px; max-width:1080px; margin:0 auto;
   }
-  .logo{font-family:'Fraunces',serif; font-weight:600; font-size:20px; color:var(--ink);}
+  .logo{
+    font-family:'Fraunces',serif; font-weight:600; font-size:20px; color:var(--ink);
+    display:flex; align-items:center; gap:10px;
+  }
+  .logo-mark{width:28px; height:28px; border-radius:6px; display:block;}
   .nav-cta{
     font-family:'IBM Plex Mono',monospace;
     font-size:13px;
@@ -236,7 +243,11 @@
   /* FOOTER */
   footer{background:var(--paper); border-top:1px solid var(--border); padding:36px 0;}
   .footer-grid{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;}
-  .footer-logo{font-family:'Fraunces',serif; font-weight:600; font-size:16px; color:var(--ink);}
+  .footer-logo{
+    font-family:'Fraunces',serif; font-weight:600; font-size:16px; color:var(--ink);
+    display:flex; align-items:center; gap:8px;
+  }
+  .footer-logo img{width:22px; height:22px; border-radius:5px;}
   .footer-links{display:flex; gap:24px; list-style:none;}
   .footer-links a{
     font-family:'IBM Plex Mono',monospace; font-size:12px; color:#6b6b6b; text-decoration:none;
@@ -314,7 +325,7 @@
 <body>
 
 <nav>
-  <div class="logo">Reynolds Design Co.</div>
+  <div class="logo"><img class="logo-mark" src="assets/favicon/favicon.svg" alt=""> Reynolds Design Co.</div>
   <a class="nav-cta" href="#contact">Get Free Mockup</a>
 </nav>
 
@@ -662,14 +673,14 @@
     <h2>Curious what your site could look like?</h2>
     <p>Get a free custom mockup — no cost, no commitment, no awkward sales call.</p>
     <a class="btn-primary" href="#contact">Get My Free Mockup →</a>
-    <!-- <div class="final-note">Currently building 3 free mockups this week</div> -->
+    <div class="final-note">Currently building 3 free mockups this week</div>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
     <div class="footer-grid">
-      <div class="footer-logo">Reynolds Design Co.</div>
+      <div class="footer-logo"><img src="assets/favicon/favicon.svg" alt=""> Reynolds Design Co.</div>
       <ul class="footer-links">
         <li><a href="#contact">Contact</a></li>
         <li><a href="mailto:Noahdavisreynolds@hotmail.com">Email</a></li>
