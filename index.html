@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Conversion Landing Page — Mockup</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14213D;
+    --paper:#F7F4EE;
+    --amber:#E8A33D;
+    --sage:#6B8F71;
+    --text:#1B1B1B;
+    --border:#DDD6C7;
+    --white:#FFFFFF;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    line-height:1.5;
+  }
+  .wrap{max-width:1080px; margin:0 auto; padding:0 32px;}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--sage);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{content:''; width:18px; height:1px; background:var(--sage);}
+
+  /* NAV */
+  nav{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:24px 32px; max-width:1080px; margin:0 auto;
+  }
+  .logo{font-family:'Fraunces',serif; font-weight:600; font-size:20px; color:var(--ink);}
+  .nav-cta{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;
+    background:var(--ink);
+    color:var(--paper);
+    padding:10px 18px;
+    border-radius:2px;
+    text-decoration:none;
+  }
+
+  /* HERO */
+  .hero{padding:64px 0 88px; position:relative;}
+  .hero-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:center;}
+  h1{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:52px;
+    line-height:1.05;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+    margin:18px 0 20px;
+  }
+  h1 em{color:var(--amber); font-style:normal;}
+  .hero-sub{font-size:17px; color:#3d3d3d; max-width:460px; margin-bottom:32px;}
+  .cta-row{display:flex; align-items:center; gap:18px;}
+  .btn-primary{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:14px;
+    background:var(--amber);
+    color:var(--ink);
+    padding:16px 28px;
+    border-radius:2px;
+    text-decoration:none;
+    font-weight:500;
+    box-shadow:4px 4px 0 var(--ink);
+    transition:transform .15s ease;
+  }
+  .btn-primary:hover{transform:translate(2px,2px); box-shadow:2px 2px 0 var(--ink);}
+  .trust-note{font-size:13px; color:#6b6b6b;}
+
+  /* Hero signature: mock browser + conversion path */
+  .signature{
+    background:var(--white);
+    border:1px solid var(--border);
+    border-radius:6px;
+    overflow:hidden;
+    box-shadow:0 12px 32px rgba(20,33,61,0.08);
+  }
+  .browser-bar{
+    background:var(--ink);
+    padding:10px 14px;
+    display:flex; gap:6px;
+  }
+  .dot{width:9px; height:9px; border-radius:50%; background:#ffffff33;}
+  .signature-body{padding:28px 24px;}
+  .funnel-row{display:flex; align-items:center; justify-content:space-between; margin-bottom:18px;}
+  .funnel-stage{text-align:center; flex:1;}
+  .funnel-num{
+    font-family:'Fraunces',serif; font-size:28px; font-weight:600; color:var(--ink);
+  }
+  .funnel-label{font-family:'IBM Plex Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:.08em; color:#8a8a8a; margin-top:4px;}
+  .funnel-arrow{color:var(--amber); font-size:18px; padding:0 6px;}
+  .funnel-note{
+    font-size:13px; color:#555; border-top:1px dashed var(--border); padding-top:16px; margin-top:6px;
+  }
+
+  /* PROBLEM */
+  .problem{background:var(--ink); color:var(--paper); padding:72px 0;}
+  .problem .eyebrow{color:var(--amber);}
+  .problem .eyebrow::before{background:var(--amber);}
+  .problem h2{
+    font-family:'Fraunces',serif; font-weight:600; font-size:34px; margin:16px 0 32px; max-width:620px;
+  }
+  .problem-grid{display:grid; grid-template-columns:1fr 1fr; gap:40px;}
+  .problem-col h3{font-family:'IBM Plex Mono',monospace; font-size:12px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:14px;}
+  .problem-col.before h3{color:#e88a8a;}
+  .problem-col.after h3{color:var(--sage);}
+  .problem-col ul{list-style:none;}
+  .problem-col li{
+    padding:10px 0; border-bottom:1px solid #ffffff22; font-size:15px; color:#ddd8ca;
+  }
+
+  /* PROCESS */
+  .process{padding:80px 0;}
+  .process h2{font-family:'Fraunces',serif; font-weight:600; font-size:32px; margin:16px 0 44px;}
+  .steps{display:flex; gap:0; position:relative;}
+  .steps::before{
+    content:''; position:absolute; top:22px; left:0; right:0; height:1px; background:var(--border);
+  }
+  .step{flex:1; position:relative; padding-right:24px;}
+  .step-num{
+    font-family:'Fraunces',serif; font-size:20px; font-weight:600;
+    width:44px; height:44px; border-radius:50%; background:var(--paper);
+    border:1.5px solid var(--ink); display:flex; align-items:center; justify-content:center;
+    margin-bottom:18px; position:relative; z-index:1;
+  }
+  .step h4{font-size:16px; margin-bottom:8px; color:var(--ink);}
+  .step p{font-size:14px; color:#555;}
+
+  /* PROOF */
+  .proof{background:var(--white); padding:80px 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border);}
+  .proof h2{font-family:'Fraunces',serif; font-weight:600; font-size:32px; margin:16px 0 40px;}
+  .proof-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .proof-card{
+    border:1px solid var(--border); border-radius:6px; padding:24px; background:var(--paper);
+  }
+  .stat{font-family:'Fraunces',serif; font-size:36px; font-weight:600; color:var(--amber);}
+  .stat-label{font-size:13px; color:#555; margin:6px 0 16px;}
+  .quote{font-size:14px; color:#333; font-style:italic; border-top:1px solid var(--border); padding-top:14px;}
+  .who{font-family:'IBM Plex Mono',monospace; font-size:11px; color:#8a8a8a; margin-top:10px;}
+
+  /* PRICING */
+  .pricing{padding:80px 0;}
+  .pricing h2{font-family:'Fraunces',serif; font-weight:600; font-size:32px; margin:16px 0 40px;}
+  .price-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  .price-card{border:1px solid var(--border); border-radius:6px; padding:28px 24px; background:var(--white);}
+  .price-card.featured{border:1.5px solid var(--amber); box-shadow:0 8px 24px rgba(232,163,61,0.18); position:relative;}
+  .featured-tag{
+    position:absolute; top:-12px; left:24px; background:var(--amber); color:var(--ink);
+    font-family:'IBM Plex Mono',monospace; font-size:10px; padding:4px 10px; border-radius:2px; text-transform:uppercase;
+  }
+  .price-tier{font-family:'IBM Plex Mono',monospace; font-size:12px; text-transform:uppercase; color:#8a8a8a; margin-bottom:8px;}
+  .price-amount{font-family:'Fraunces',serif; font-size:30px; font-weight:600; color:var(--ink); margin-bottom:16px;}
+  .price-card ul{list-style:none; margin-bottom:20px;}
+  .price-card li{font-size:13px; color:#444; padding:6px 0;}
+  .price-card li::before{content:'— '; color:var(--sage);}
+  .price-btn{
+    display:block; text-align:center; font-family:'IBM Plex Mono',monospace; font-size:13px;
+    padding:12px; border:1px solid var(--ink); border-radius:2px; text-decoration:none; color:var(--ink);
+  }
+  .price-card.featured .price-btn{background:var(--ink); color:var(--paper);}
+
+  /* FAQ */
+  .faq{background:var(--white); padding:72px 0; border-top:1px solid var(--border);}
+  .faq h2{font-family:'Fraunces',serif; font-weight:600; font-size:32px; margin:16px 0 32px;}
+  .faq-item{border-bottom:1px solid var(--border); padding:18px 0;}
+  .faq-item summary{
+    cursor:pointer; font-size:15px; font-weight:600; color:var(--ink); list-style:none;
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  .faq-item summary::-webkit-details-marker{display:none;}
+  .faq-item summary::after{content:'+'; font-family:'IBM Plex Mono',monospace; font-size:18px; color:var(--amber);}
+  .faq-item[open] summary::after{content:'–';}
+  .faq-item p{font-size:14px; color:#555; margin-top:12px; max-width:640px;}
+
+  /* FINAL CTA */
+  .final-cta{
+    background:var(--ink); color:var(--paper); padding:80px 0; text-align:center;
+  }
+  .final-cta h2{font-family:'Fraunces',serif; font-weight:600; font-size:36px; margin-bottom:14px;}
+  .final-cta p{color:#c9c3b3; margin-bottom:28px;}
+  .final-note{margin-top:16px; font-family:'IBM Plex Mono',monospace; font-size:12px; color:#8f8a7a;}
+
+  /* CONTACT */
+  .contact{background:var(--white); padding:80px 0; border-top:1px solid var(--border);}
+  .contact-grid{display:grid; grid-template-columns:0.85fr 1.15fr; gap:56px; align-items:start;}
+  .contact h2{font-family:'Fraunces',serif; font-weight:600; font-size:32px; margin:16px 0 16px;}
+  .contact-intro{font-size:15px; color:#444; max-width:380px; margin-bottom:28px;}
+  .contact-detail{display:flex; align-items:baseline; gap:10px; margin-bottom:12px;}
+  .contact-detail-label{font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:#8a8a8a; width:76px; flex-shrink:0;}
+  .contact-detail-value{font-size:14px; color:var(--ink);}
+  .contact-detail-value a{color:var(--ink); text-decoration:none; border-bottom:1px solid var(--border);}
+
+  .contact-form{background:var(--paper); border:1px solid var(--border); border-radius:6px; padding:32px;}
+  .form-row{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;}
+  .form-group{margin-bottom:16px;}
+  .form-group.full{grid-column:1 / -1;}
+  .form-group label{
+    display:block; font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase;
+    letter-spacing:.06em; color:#6b6b6b; margin-bottom:6px;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea{
+    width:100%; padding:11px 12px; border:1px solid var(--border); border-radius:3px;
+    background:var(--white); font-family:'Inter',sans-serif; font-size:14px; color:var(--text);
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus{
+    outline:2px solid var(--amber); outline-offset:1px; border-color:var(--amber);
+  }
+  .form-group textarea{resize:vertical; min-height:90px;}
+  .form-submit{
+    font-family:'IBM Plex Mono',monospace; font-size:14px; background:var(--amber); color:var(--ink);
+    padding:14px 26px; border-radius:2px; border:none; font-weight:500; cursor:pointer;
+    box-shadow:4px 4px 0 var(--ink); transition:transform .15s ease; width:100%;
+  }
+  .form-submit:hover{transform:translate(2px,2px); box-shadow:2px 2px 0 var(--ink);}
+  .form-note{font-size:12px; color:#8a8a8a; margin-top:12px; text-align:center;}
+
+  @media(max-width:800px){
+    .hero-grid{grid-template-columns:1fr;}
+    .problem-grid, .price-grid, .proof-grid, .contact-grid{grid-template-columns:1fr;}
+    .form-row{grid-template-columns:1fr;}
+    .steps{flex-direction:column; gap:28px;}
+    .steps::before{display:none;}
+    h1{font-size:36px;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Reynolds Design Co.</div>
+  <a class="nav-cta" href="#contact">Get Free Mockup</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Web Design for Small Business</div>
+      <h1>See your new website <em>before</em> you pay a cent.</h1>
+      <p class="hero-sub">Tell us about your business and we'll design a free custom mockup of your homepage — no obligation. If you love it, we build it.</p>
+      <div class="cta-row">
+        <a class="btn-primary" href="#contact">Get My Free Mockup →</a>
+        <span class="trust-note">Takes 2 minutes, mockup delivered in 3 days</span>
+      </div>
+    </div>
+    <div class="signature">
+      <div class="browser-bar">
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      </div>
+      <div class="signature-body">
+        <div class="funnel-row">
+          <div class="funnel-stage">
+            <div class="funnel-num">100</div>
+            <div class="funnel-label">Visitors</div>
+          </div>
+          <div class="funnel-arrow">→</div>
+          <div class="funnel-stage">
+            <div class="funnel-num">32</div>
+            <div class="funnel-label">Inquiries</div>
+          </div>
+          <div class="funnel-arrow">→</div>
+          <div class="funnel-stage">
+            <div class="funnel-num">11</div>
+            <div class="funnel-label">Clients</div>
+          </div>
+        </div>
+        <div class="funnel-note">Average across 14 client launches in the last 12 months.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <div class="wrap">
+    <div class="eyebrow">The Problem</div>
+    <h2>Most small business sites look fine and do nothing.</h2>
+    <div class="problem-grid">
+      <div class="problem-col before">
+        <h3>Before</h3>
+        <ul>
+          <li>Visitors land, scroll, and leave — no clear next step</li>
+          <li>Navigation buried in a menu with 8 unclear options</li>
+          <li>Contact info hidden three clicks deep</li>
+          <li>No proof you're worth trusting</li>
+        </ul>
+      </div>
+      <div class="problem-col after">
+        <h3>After</h3>
+        <ul>
+          <li>One clear offer, one clear action, above the fold</li>
+          <li>Proof and pricing visible without hunting</li>
+          <li>Built around what your customer actually needs to decide</li>
+          <li>Every section earns its place or gets cut</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process">
+  <div class="wrap">
+    <div class="eyebrow">How It Works</div>
+    <h2>You see it before you pay for it.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4>Free mockup</h4>
+        <p>Answer a few quick questions and we design a real homepage mockup for your business — free, no card required.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4>You decide</h4>
+        <p>Love it? We move forward. Not the right fit? No hard feelings, no charge.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4>Build &amp; launch</h4>
+        <p>We build out the full site from the approved mockup, with two revision rounds included.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF -->
+<section class="proof">
+  <div class="wrap">
+    <div class="eyebrow">Proof</div>
+    <h2>Results, not just portfolio pieces.</h2>
+    <div class="proof-grid">
+      <div class="proof-card">
+        <div class="stat">+40%</div>
+        <div class="stat-label">increase in inquiry form submissions</div>
+        <div class="quote">The new site paid for itself in the first month.</div>
+        <div class="who">— Rylie Read, Phone repair business</div>
+      </div>
+      <div class="proof-card">
+        <div class="stat">2x</div>
+        <div class="stat-label">more calls booked from the site</div>
+        <div class="quote">Finally a site that matches how we actually talk to clients.</div>
+        <div class="who">— David Scott, Mental Health Course Provider Business</div>
+      </div>
+      <div class="proof-card">
+        <div class="stat">4 wks</div>
+        <div class="stat-label">from kickoff to live site</div>
+        <div class="quote">Fast, Trustworthy, exactly what we asked for.</div>
+        <div class="who">— Victoria Malin, Pyschotherapy Practise</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing">
+  <div class="wrap">
+    <div class="eyebrow">Packages</div>
+    <h2>Pick a starting point.</h2>
+    <p style="font-size:14px; color:#555; margin:-24px 0 32px; max-width:520px;">Every package starts with your free homepage mockup — you only choose a tier once you've seen it and decide to move forward.</p>
+    <div class="price-grid">
+      <div class="price-card">
+        <div class="price-tier">Starter</div>
+        <div class="price-amount">From $150 - £300</div>
+        <ul>
+          <li>Single-page conversion site</li>
+          <li>Mobile-optimized</li>
+          <li>Basic SEO setup</li>
+        </ul>
+        <a class="price-btn" href="#contact">Get Started</a>
+      </div>
+      <div class="price-card featured">
+        <div class="featured-tag">Most Chosen</div>
+        <div class="price-tier">Growth</div>
+        <div class="price-amount">From $400 - £900</div>
+        <ul>
+          <li>Up to 5 pages</li>
+          <li>Booking / inquiry form integration</li>
+          <li>Copywriting included</li>
+          <li>30-day post-launch support</li>
+        </ul>
+        <a class="price-btn" href="#contact">Get Started</a>
+      </div>
+      <div class="price-card">
+        <div class="price-tier">Custom</div>
+        <div class="price-amount">Let's talk</div>
+        <ul>
+          <li>Multi-location or e-commerce needs</li>
+          <li>Ongoing content support</li>
+          <li>Custom integrations</li>
+        </ul>
+        <a class="price-btn" href="#contact">Get Started</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="wrap">
+    <div class="eyebrow">Questions</div>
+    <h2>Before you ask.</h2>
+    <details class="faq-item" open>
+      <summary>Is the mockup really free, no strings attached?</summary>
+      <p>Yes. You get a real, custom-designed homepage mockup for your business at no cost. If it's not right for you, that's the end of it — nothing owed, no pressure to continue.</p>
+    </details>
+    <details class="faq-item">
+      <summary>How long does a project take?</summary>
+      <p>Most sites launch within 3–4 weeks from our first call, depending on scope and how quickly feedback comes back.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Do you write the copy too?</summary>
+      <p>Yes, for the Growth and Custom packages. Starter includes light copy editing on what you provide.</p>
+    </details>
+    <details class="faq-item">
+      <summary>What if I don't like the first draft?</summary>
+      <p>You get two structured revision rounds built into every package before anything is considered final.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Do I own the site after launch?</summary>
+      <p>Completely. You get full ownership of the code and content — no lock-in, no recurring platform fees required.</p>
+    </details>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap contact-grid">
+    <div>
+      <div class="eyebrow">Get In Touch</div>
+      <h2>Tell us about your business.</h2>
+      <p class="contact-intro">Fill this in and we'll get back to you with your free mockup, or answer any questions first — whichever you need.</p>
+      <div class="contact-detail">
+        <span class="contact-detail-label">Email</span>
+        <span class="contact-detail-value"><a href="mailto:hello@reynoldsdesignco.com">hello@reynoldsdesignco.com</a></span>
+      </div>
+      <div class="contact-detail">
+        <span class="contact-detail-label">Response</span>
+        <span class="contact-detail-value">Within 1 business day</span>
+      </div>
+      <div class="contact-detail">
+        <span class="contact-detail-label">Based in</span>
+        <span class="contact-detail-value">United Kingdom</span>
+      </div>
+    </div>
+
+    <form class="contact-form" action="https://formspree.io/f/mgojglry" method="POST">
+      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Your name</label>
+          <input type="text" id="name" name="name" placeholder="Jane Smith" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="_replyto" placeholder="jane@business.com" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="business">Business name</label>
+          <input type="text" id="business" name="business" placeholder="Your business">
+        </div>
+        <div class="form-group">
+          <label for="interest">What do you need?</label>
+          <select id="interest" name="interest">
+            <option>Free mockup</option>
+            <option>Full project quote</option>
+            <option>Just a question</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group full">
+        <label for="message">Tell us a bit about your business</label>
+        <textarea id="message" name="message" placeholder="What you do, who your customers are, and what your current site is missing"></textarea>
+      </div>
+      <input type="hidden" name="_subject" value="New enquiry from Reynolds Design Co. site">
+      <button type="submit" class="form-submit">Send Enquiry →</button>
+      <div class="form-note">No spam, no sales calls unless you ask for one.</div>
+    </form>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="wrap">
+    <h2>Curious what your site could look like?</h2>
+    <p>Get a free custom mockup — no cost, no commitment, no awkward sales call.</p>
+    <a class="btn-primary" href="#contact">Get My Free Mockup →</a>
+    <div class="final-note">Currently building 3 free mockups this week</div>
+  </div>
+</section>
+
+</body>
+</html>
