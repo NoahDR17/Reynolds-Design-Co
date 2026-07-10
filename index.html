@@ -48,8 +48,8 @@
 
   /* NAV */
   nav{
-    display:flex; justify-content:space-between; align-items:center;
-    padding:24px 32px; max-width:1080px; margin:0 auto;
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;
+    gap:10px; padding:24px 32px; max-width:1080px; margin:0 auto;
   }
   .logo{
     font-family:'Fraunces',serif; font-weight:600; font-size:20px; color:var(--ink);
@@ -64,7 +64,9 @@
     padding:10px 18px;
     border-radius:2px;
     text-decoration:none;
+    white-space:nowrap;
   }
+  .nav-cta-short{display:none;}
 
   /* HERO */
   .hero{padding:64px 0 88px; position:relative;}
@@ -319,6 +321,15 @@
     .steps{flex-direction:column; gap:28px;}
     .steps::before{display:none;}
     h1{font-size:36px;}
+    nav{padding:18px 20px;}
+  }
+
+  @media(max-width:420px){
+    .logo{font-size:16px; gap:7px;}
+    .logo-mark{width:22px; height:22px;}
+    .nav-cta{padding:9px 14px; font-size:12px;}
+    .nav-cta-full{display:none;}
+    .nav-cta-short{display:inline;}
   }
 </style>
 </head>
@@ -326,7 +337,7 @@
 
 <nav>
   <div class="logo"><img class="logo-mark" src="assets/favicon/favicon.svg" alt=""> Reynolds Design Co.</div>
-  <a class="nav-cta" href="#contact">Get Free Mockup</a>
+  <a class="nav-cta" href="#contact"><span class="nav-cta-full">Get Free Mockup</span><span class="nav-cta-short">Free Mockup</span></a>
 </nav>
 
 <!-- HERO -->
@@ -673,7 +684,7 @@
     <h2>Curious what your site could look like?</h2>
     <p>Get a free custom mockup — no cost, no commitment, no awkward sales call.</p>
     <a class="btn-primary" href="#contact">Get My Free Mockup →</a>
-    <div class="final-note">Currently building 3 free mockups this week</div>
+    <!-- <div class="final-note">Currently building 3 free mockups this week</div> -->
   </div>
 </section>
 
