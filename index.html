@@ -68,13 +68,35 @@
     backdrop-filter:saturate(180%) blur(10px);
     box-shadow:0 10px 30px rgba(20,33,61,.16);
   }
-  .site-header.is-scrolled.menu-open{
-    border-radius:24px;
+  .site-header.is-scrolled nav{padding:12px 26px;}
+
+  /* Dark theme: navbar sits over a dark-background section */
+  .site-header.theme-dark{
+    background:var(--ink);
+    border-color:rgba(255,255,255,.12);
+  }
+  .site-header.theme-dark.is-scrolled{
+    background:rgba(20,33,61,.88);
+    box-shadow:0 10px 30px rgba(0,0,0,.28);
+  }
+  .site-header.theme-dark .logo,
+  .site-header.theme-dark .nav-links a{color:var(--paper);}
+  .site-header.theme-dark .nav-toggle span{background:var(--paper);}
+  .site-header.theme-dark .nav-links a.nav-enquire{background:var(--paper); color:var(--ink);}
+  .site-header.theme-dark .nav-links a.nav-enquire:hover{background:var(--amber); color:var(--ink);}
+  .site-header.theme-dark .nav-mobile a{color:var(--paper); border-top-color:rgba(255,255,255,.15);}
+  .site-header.theme-dark .nav-mobile a.nav-enquire{background:var(--paper); color:var(--ink);}
+  .site-header.theme-dark .nav-mobile a.nav-enquire:hover{background:var(--amber); color:var(--ink);}
+
+  /* Mobile menu open: force a solid, readable background regardless of scroll/theme state */
+  .site-header.menu-open{
     background:#F1ECE1;
     -webkit-backdrop-filter:none;
     backdrop-filter:none;
   }
-  .site-header.is-scrolled nav{padding:12px 26px;}
+  .site-header.menu-open.theme-dark{background:var(--ink);}
+  .site-header.is-scrolled.menu-open{border-radius:24px;}
+
   nav{
     display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;
     gap:10px; padding:24px 32px; max-width:1080px; margin:0 auto;
@@ -84,13 +106,14 @@
     font-family:'Fraunces',serif; font-weight:600; font-size:20px; color:var(--ink);
     display:flex; align-items:center; gap:10px;
     text-decoration:none; cursor:pointer;
+    transition:color .35s ease;
   }
   .logo-mark{width:28px; height:28px; border-radius:6px; display:block;}
   .nav-links{
     display:flex; align-items:center; gap:28px;
     font-family:'IBM Plex Mono',monospace; font-size:13px;
   }
-  .nav-links a{color:var(--ink); text-decoration:none; opacity:.72; transition:opacity .15s;}
+  .nav-links a{color:var(--ink); text-decoration:none; opacity:.72; transition:opacity .15s, color .35s ease, background-color .25s ease;}
   .nav-links a:hover{opacity:1;}
   .nav-toggle{
     display:none; flex-direction:column; justify-content:center; gap:5px;
@@ -98,7 +121,7 @@
   }
   .nav-toggle span{
     display:block; width:100%; height:2px; background:var(--ink); border-radius:2px;
-    transition:transform .2s ease, opacity .2s ease;
+    transition:transform .2s ease, opacity .2s ease, background-color .35s ease;
   }
   .nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg);}
   .nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0;}
@@ -114,6 +137,7 @@
     font-family:'IBM Plex Mono',monospace; font-size:14px;
     border-top:1px solid var(--border);
     opacity:.8;
+    transition:color .35s ease, border-color .35s ease, background-color .25s ease;
   }
   .nav-mobile a:hover{opacity:1;}
   .nav-mobile.open{max-height:260px; opacity:1;}
@@ -450,7 +474,7 @@
 </section>
 
 <!-- PROBLEM -->
-<section class="problem">
+<section class="problem" data-nav="dark">
   <div class="wrap">
     <div class="eyebrow">The Problem</div>
     <h2>Your work is excellent. Does your website show that?</h2>
@@ -579,7 +603,7 @@
 </section>
 
 <!-- ABOUT -->
-<section class="about">
+<section class="about" data-nav="dark">
   <div class="wrap about-grid">
     <div class="about-photo">
       <img src="https://res.cloudinary.com/du7daaai2/image/upload/v1783692498/profile_q7nsav.jpg" alt="Noah Reynolds, founder of Reynolds Design Co.">
@@ -758,7 +782,7 @@
 </section>
 
 <!-- FINAL CTA -->
-<section class="final-cta">
+<section class="final-cta" data-nav="dark">
   <div class="wrap">
     <h2>Curious what your site could look like?</h2>
     <p>Get a free custom mockup — no cost, no commitment, no awkward sales call.</p>
@@ -792,12 +816,14 @@
       menu.classList.remove('open');
       toggle.setAttribute('aria-expanded', 'false');
       if (header) header.classList.remove('menu-open');
+      window.dispatchEvent(new Event('scroll'));
     }
 
     toggle.addEventListener('click', () => {
       const isOpen = menu.classList.toggle('open');
       toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
       if (header) header.classList.toggle('menu-open', isOpen);
+      window.dispatchEvent(new Event('scroll'));
     });
 
     menu.querySelectorAll('a').forEach((link) => {
@@ -812,8 +838,19 @@
     if (!header) return;
     let ticking = false;
 
+    function updateTheme() {
+      const rect = header.getBoundingClientRect();
+      const probeX = window.innerWidth / 2;
+      const probeY = rect.bottom + 2;
+      const el = document.elementFromPoint(probeX, probeY);
+      const themed = el ? el.closest('[data-nav]') : null;
+      const isDark = !themed || themed.getAttribute('data-nav') !== 'dark';
+      header.classList.toggle('theme-dark', isDark);
+    }
+
     function update() {
       header.classList.toggle('is-scrolled', window.scrollY > 40);
+      updateTheme();
       ticking = false;
     }
 
@@ -828,6 +865,7 @@
       { passive: true }
     );
 
+    window.addEventListener('resize', update);
     update();
   })();
 </script>
