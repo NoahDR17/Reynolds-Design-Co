@@ -829,6 +829,16 @@
     menu.querySelectorAll('a').forEach((link) => {
       link.addEventListener('click', closeMenu);
     });
+
+    document.addEventListener('click', (e) => {
+      if (!menu.classList.contains('open')) return;
+      if (menu.contains(e.target) || toggle.contains(e.target)) return;
+      closeMenu();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menu.classList.contains('open')) closeMenu();
+    });
   })();
 </script>
 
