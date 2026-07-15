@@ -48,9 +48,36 @@
   .eyebrow::before{content:''; width:18px; height:1px; background:var(--sage);}
 
   /* NAV */
+  .site-header{
+    background:#F1ECE1; border-bottom:1px solid var(--border);
+    position:sticky; top:0; z-index:100; width:100%; margin:0 auto;
+    overflow:hidden;
+    transition:max-width .45s cubic-bezier(.22,1,.36,1), width .45s cubic-bezier(.22,1,.36,1),
+      top .45s cubic-bezier(.22,1,.36,1), border-radius .45s cubic-bezier(.22,1,.36,1),
+      box-shadow .45s ease, background-color .45s ease, border-color .45s ease;
+  }
+  .site-header.is-scrolled{
+    max-width:820px;
+    width:calc(100% - 32px);
+    top:14px;
+    border-radius:999px;
+    border-color:transparent;
+    background:rgba(241,236,225,.88);
+    -webkit-backdrop-filter:saturate(180%) blur(10px);
+    backdrop-filter:saturate(180%) blur(10px);
+    box-shadow:0 10px 30px rgba(20,33,61,.16);
+  }
+  .site-header.is-scrolled.menu-open{
+    border-radius:24px;
+    background:#F1ECE1;
+    -webkit-backdrop-filter:none;
+    backdrop-filter:none;
+  }
+  .site-header.is-scrolled nav{padding:12px 26px;}
   nav{
     display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;
     gap:10px; padding:24px 32px; max-width:1080px; margin:0 auto;
+    transition:padding .4s cubic-bezier(.22,1,.36,1);
   }
   .logo{
     font-family:'Fraunces',serif; font-weight:600; font-size:20px; color:var(--ink);
@@ -78,7 +105,7 @@
     display:none; flex-direction:column;
     max-height:0; overflow:hidden; opacity:0;
     transition:max-height .28s ease, opacity .2s ease;
-    background:var(--paper); border-bottom:1px solid var(--border);
+    background:transparent;
   }
   .nav-mobile a{
     display:block; padding:14px 20px; color:var(--ink); text-decoration:none;
@@ -364,6 +391,7 @@
 </head>
 <body>
 
+<header class="site-header">
 <nav>
   <div class="logo"><img class="logo-mark" src="assets/favicon/favicon.svg" alt=""> Reynolds Design Co.</div>
   <div class="nav-links">
@@ -383,7 +411,9 @@
   <a href="#pricing">Pricing</a>
   <a href="#faq">FAQ</a>
   <a href="#contact" class="nav-enquire">Enquire</a>
+
 </div>
+</header>
 
 <!-- HERO -->
 <section class="hero">
@@ -751,21 +781,50 @@
   (function () {
     const toggle = document.getElementById('nav-toggle');
     const menu = document.getElementById('nav-mobile');
+    const header = document.querySelector('.site-header');
     if (!toggle || !menu) return;
 
     function closeMenu() {
       menu.classList.remove('open');
       toggle.setAttribute('aria-expanded', 'false');
+      if (header) header.classList.remove('menu-open');
     }
 
     toggle.addEventListener('click', () => {
       const isOpen = menu.classList.toggle('open');
       toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      if (header) header.classList.toggle('menu-open', isOpen);
     });
 
     menu.querySelectorAll('a').forEach((link) => {
       link.addEventListener('click', closeMenu);
     });
+  })();
+</script>
+
+<script>
+  (function () {
+    const header = document.querySelector('.site-header');
+    if (!header) return;
+    let ticking = false;
+
+    function update() {
+      header.classList.toggle('is-scrolled', window.scrollY > 40);
+      ticking = false;
+    }
+
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (!ticking) {
+          requestAnimationFrame(update);
+          ticking = true;
+        }
+      },
+      { passive: true }
+    );
+
+    update();
   })();
 </script>
 
