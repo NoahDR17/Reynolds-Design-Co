@@ -28,6 +28,7 @@
     --white:#FFFFFF;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
   body{
     background:var(--paper);
     color:var(--text);
@@ -82,6 +83,7 @@
   .logo{
     font-family:'Fraunces',serif; font-weight:600; font-size:20px; color:var(--ink);
     display:flex; align-items:center; gap:10px;
+    text-decoration:none; cursor:pointer;
   }
   .logo-mark{width:28px; height:28px; border-radius:6px; display:block;}
   .nav-links{
@@ -393,7 +395,7 @@
 
 <header class="site-header">
 <nav>
-  <div class="logo"><img class="logo-mark" src="assets/favicon/favicon.svg" alt=""> Reynolds Design Co.</div>
+  <a class="logo" href="#" aria-label="Reynolds Design Co. — back to top"><img class="logo-mark" src="assets/favicon/favicon.svg" alt=""> Reynolds Design Co.</a>
   <div class="nav-links">
     <a href="#how-it-works">How It Works</a>
     <a href="#work">Work</a>
@@ -481,7 +483,7 @@
   <div class="wrap">
     <div class="eyebrow">How It Works</div>
     <h2>You see it before you pay for it.</h2>
-    <p style="font-size:15px; color:#555; margin:-24px 0 32px; max-width:560px;">I believe good client relationships are built on trust, not a deposit. That's why every project starts with a free, no-obligation mockup — you see exactly what you'd be getting before you spend anything or commit to working together.</p>
+    <p style="font-size:15px; color:#555; margin:-24px 0 32px; max-width:560px;">I believe good client relationships are built on earned trust, not a leap of faith. That's why every project starts with a free, no-obligation mockup — you see exactly what you'd be getting before you spend anything or commit to working together.</p>
     <div class="steps">
       <div class="step">
         <div class="step-num">1</div>
